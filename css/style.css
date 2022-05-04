@@ -1,0 +1,55 @@
+body {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 150%;
+}
+
+.content {
+	padding: 0.25em;
+}
+
+.control {
+	margin: 0.25em;
+}
+
+.control label {
+	width: 6.5em;
+	display: inline-block;
+}
+
+.control input {
+	padding: 1em;
+}
+
+.control input[type="button"] {
+	background-color : dodgerblue;
+	padding: 15px 32px;
+	font-size: 16px;
+}
+
+.container {
+	margin: auto;
+}
+
+.theMessage {
+	background-color:lightseagreen;
+	padding: 0.5em;
+	margin: 0.5em 0em;
+}
+
+.code {
+	background-color: lightgrey;
+	padding: 0.5em;
+}
+.danger {
+    color: red;
+}
+
+.warning {
+    color: orange;
+}
+@media(min-width: 1024px) {
+	.container {
+		width: 80%;
+		margin: auto;
+	}
+}
