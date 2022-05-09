@@ -1,7 +1,7 @@
 // get refences to all the settings fields
 const callsTotalSet = document.querySelector(".callTotalSettings");
 const smsTotalSet = document.querySelector(".smsTotalSettings");
-const totalCostSet = document.querySelector(".totalSettings");
+
 //get a reference to the add button
 const radioSetAddBtn = document.querySelector(".radioSetAddBtn");
 //get a reference to the 'Update settings' button
@@ -9,12 +9,38 @@ const updateSettings = document.querySelector(".updateSettings")
 
 //add an event listener for when the 'Update settings' button is pressed
 var billWithSetting = BillWithSettings();
+
+function fillTamplateData2(){
+    // get a reference to the template script tag
+    var templateSource = document.querySelector(".userTemplate2").innerHTML;
+
+    // compile the template
+    var userTemplate = Handlebars.compile(templateSource);
+
+    // get a reference to tableBody where users is to be displayed
+    var userDataElem = document.querySelector(".userData2");
+
+    Handlebars.registerHelper("setbold", function (total) {
+        var result = '<span class="totalSettings">' + Handlebars.escapeExpression(total) + '</span>';
+        return new Handlebars.SafeString(result);
+    });
+    // use the compiled the template
+    var userDataHTML = userTemplate({
+        calltotal:  billWithSetting.getTotalCallCost().toFixed(2),
+        smstotal:  billWithSetting.getTotalSmsCost().toFixed(2),
+        total:   billWithSetting.getTotalCost().toFixed(2)
+    });
+    userDataElem.innerHTML = userDataHTML;
+}
+
 function updateCosts() {
     const callCostSetting = document.querySelector(".callCostSetting");
     const smsCostSetting = document.querySelector(".smsCostSetting");
     const warningLevelSetting = document.querySelector(".warningLevelSetting");
     const criticalLevelSetting = document.querySelector(".criticalLevelSetting");
-
+    fillTamplateData2();
+    const totalCostSet = document.querySelector(".totalSettings");
+    alert(totalCostSet)
     if (smsCostSetting.value !== "")
         billWithSetting.setSmsCost(parseFloat(smsCostSetting.value));
     if (callCostSetting.value !== "")
@@ -58,10 +84,8 @@ function setBillTotal() {
         }
     }
     //update the totals that is displayed on the screen.
-    callsTotalSet.innerHTML = billWithSetting.getTotalCallCost().toFixed(2);
-    smsTotalSet.innerHTML = billWithSetting.getTotalSmsCost().toFixed(2);
-    totalCostSet.innerHTML = billWithSetting.getTotalCost().toFixed(2);
-
+    fillTamplateData2();
+    const totalCostSet = document.querySelector(".totalSettings");
     //color the total based on the criteria
     totalCostSet.classList.remove("danger");
     totalCostSet.classList.remove("warning");
@@ -70,6 +94,9 @@ function setBillTotal() {
 }
 radioSetAddBtn.addEventListener('click', setBillTotal);
 
+document.addEventListener('DOMContentLoaded', function () {
+    fillTamplateData2();
+});
 //in the event listener get the value from the billItemTypeRadio radio buttons
 // * add the appropriate value to the call / sms total
 // * add the appropriate value to the overall total

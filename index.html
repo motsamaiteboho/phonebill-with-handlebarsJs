@@ -218,18 +218,23 @@
 
             <h5>Totals</h5>
             <table>
-              <tr>
-                <td>Call total</td>
-                <td>R<span class="callTotalSettings">0.00</span> </td>
-              </tr>
-              <tr>
-                <td>SMS total</td>
-                <td>R<span class="smsTotalSettings">0.00</span> </td>
-              </tr>
-              <tr>
-                <td>Total</td>
-                <td> R<span class="totalSettings">0.00</span> </td>
-              </tr>
+              <script type="text/x-template" class="userTemplate2">
+                <tr>
+                  <td>Call total</td>
+                  <td>R {{calltotal}}</td>
+                </tr>
+                <tr>
+                  <td>SMS total</td>
+                  <td>R {{smstotal}}</td>
+                </tr>
+                <tr>
+                  <td>Total</td>
+                  <td>R {{setbold total}}</td>
+                </tr>
+              </script>
+              <tbody class="userData2">
+
+              </tbody>
             </table>
 
           </div>
