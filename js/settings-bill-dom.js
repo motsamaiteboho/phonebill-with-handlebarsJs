@@ -40,7 +40,6 @@ function updateCosts() {
     const criticalLevelSetting = document.querySelector(".criticalLevelSetting");
     fillTamplateData2();
     const totalCostSet = document.querySelector(".totalSettings");
-    alert(totalCostSet)
     if (smsCostSetting.value !== "")
         billWithSetting.setSmsCost(parseFloat(smsCostSetting.value));
     if (callCostSetting.value !== "")
